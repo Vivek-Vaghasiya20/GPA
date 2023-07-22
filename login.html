@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="final1.js"></script>
+    <title>Sign In | GPA</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins:wght@300&family=Satisfy&display=swap');
+
+    body {
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-image: url('1.jpg');
+        background-repeat: no-repeat;
+        margin: 0pc;
+        padding: 0%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: linear-gradient(to right, #5f5f5f9c 0%, #8b8b8b9c 50%, #c2c2c29c 99%);
+        border-bottom: 4px solid #1616169c;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 0%;
+    }
+
+    .standard {
+        padding: 10px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    fieldset {
+        align-self: center;
+        margin: 15px 0;
+        padding: 25px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        width: 300px;
+        background: linear-gradient(to right, #00a2ff9c 0%, #00bdec9c 50%, #00abc99c 99%);
+        border: none;
+    }
+
+    .lbl {
+        color: #f3e853;
+        font-size: 17px;
+        font-weight: bold;
+        text-shadow: 0.3px 0.3px 0.8px black;
+        text-align: left;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+
+    #username,
+    #password {
+        font-size: 18px;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid darkblue;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #d9d9d9;
+    }
+
+    .info {
+        color: rgba(4, 45, 83, 0.699);
+        text-shadow: 0.5px 0.5px 1px black;
+    }
+
+    .instruct {
+        margin-top: 100px;
+        padding: 10px 150px;
+        color: whitesmoke;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .grid {
+        display: flex;
+        justify-content: center;
+        margin: 12px 0 50px 0;
+        background: linear-gradient(to right, #5f5f5f9c 0%, #8b8b8b9c 50%, #c2c2c29c 99%);
+        border-bottom: 4px solid #1616169c;
+        padding: 25px 0;
+    }
+
+    .but {
+        margin: 25px;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        padding: 3px;
+    }
+
+    img {
+        border-radius: 10px;
+        margin: 1px;
+    }
+
+    button {
+        margin-top: 3px;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        transition-duration: 0.4s;
+    }
+
+    button:hover {
+        transform: scale(1.25);
+        border-radius: 10px;
+        cursor: pointer;
+        transition-duration: 0.1s;
+        background-color: #aaaaaa9c;
+        border: 1px solid black;
+        font-weight: bold;
+    }
+
+    button:active {
+        content: "";
+        position: relative;
+        border-radius: 4em;
+        opacity: 0;
+        transition: 0s;
+        background-color: black;
+    }
+
+    .pwd,
+    .controls {
+        display: flex;
+        justify-content: center;
+    }
+
+    .con {
+        width: 150px;
+        height: 40px;
+        margin: 10px 30px;
+        font-family: inherit;
+        font-size: 22px;
+        background: linear-gradient(to right, #00a2ff9c 0%, #00bdec9c 50%, #00abc99c 99%);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>Sign In</h2>
+            <form class="standard" autocomplete="off">
+                <fieldset>
+                    <label for="username" class="lbl">
+                        Username
+                    </label>
+                    <input id="username" autocomplete="off" placeholder="enter your username." required="required" />
+                </fieldset>
+            </form>
+            <div class="links">
+                <a href="register.html" class="info">
+                    Don't have an account? Register.
+                </a>
+                <br>
+                <a href="home.html" class="info">
+                    Return to Home.
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="instruct">
+        <h5>Please select the same sequence of images as you did at the time of registration. After selecting
+            your images, Press Verify Password to Sign In.</h5>
+        <h6>If you're using keyboard, use tab to navigate through buttons and hit Spacebar to select an image.</h6>
+    </div>
+    <div class="pwd">
+        <fieldset>
+            <label for="password" class="lbl">
+                Password
+            </label>
+            <input id="password" autocomplete="off" placeholder="Password" readonly="readonly" type="password" />
+        </fieldset>
+    </div>
+    <div class="grid">
+        <div class="grid1">
+            <div id="a0" class="but"></div>
+            <div id="a1" class="but"></div>
+            <div id="a2" class="but"></div>
+        </div>
+        <div class="grid1">
+            <div id="b0" class="but"></div>
+            <div id="b1" class="but"></div>
+            <div id="b2" class="but"></div>
+        </div>
+        <div class="grid1">
+            <div id="c0" class="but"></div>
+            <div id="c1" class="but"></div>
+            <div id="c2" class="but"></div>
+        </div>
+    </div>
+    <div class="controls">
+        <button onclick="reset()" class="con">Reset</button>
+        <button onclick="signIn()" class="con">Sign In</button>
+    </div>
+</body>
+
+</html>
